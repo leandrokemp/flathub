@@ -1,0 +1,44 @@
+app-id: com.tibia.client
+runtime: org.freedesktop.Platform
+runtime-version: '24.08'
+sdk: org.freedesktop.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.llvm18
+
+command: tibia-wrapper
+
+finish-args:
+  - --socket=x11
+  - --socket=wayland
+  - --socket=pulseaudio
+  - --share=network
+  - --device=dri
+  - --filesystem=home
+  - --env=PATH=/app/bin:/usr/bin
+
+modules:
+  - name: tibia-client
+    buildsystem: simple
+    sources:
+      - type: file
+        url: https://static.tibia.com/download/tibia.x64.tar.gz
+        sha256: '6649a01229d20fd668cba498f58fce6617612a9b740c4bf46dc58b48b0d26688'
+      - type: file
+        path: com.tibia.client.desktop
+      - type: file
+        path: com.tibia.client.metainfo.xml
+      - type: file
+        path: tibia-wrapper
+      - type: file
+        path: tibia.png
+      - type: file
+        path: index.theme
+    build-commands:
+      - mkdir -p /app/share/
+      - tar -xzf tibia.x64.tar.gz -C /app/share/
+      - install -Dm644 com.tibia.client.desktop /app/share/applications/com.tibia.client.desktop
+      - install -Dm644 com.tibia.client.metainfo.xml /app/share/metainfo/com.tibia.client.metainfo.xml
+      - install -Dm755 tibia-wrapper /app/bin/tibia-wrapper
+      - install -Dm644 tibia.png /app/share/icons/hicolor/256x256/apps/com.tibia.client.png
+      - install -Dm644 index.theme /app/share/icons/hicolor/index.theme
+      - chmod +x /app/share/Tibia/Tibia
