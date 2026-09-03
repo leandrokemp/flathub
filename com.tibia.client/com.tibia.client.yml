@@ -17,6 +17,15 @@ finish-args:
   - --env=PATH=/app/bin:/usr/bin
 
 modules:
+  - name: liberation-fonts
+    buildsystem: simple
+    sources:
+      - type: archive
+        url: https://github.com/liberationfonts/liberation-fonts/releases/download/2.1.5/liberation-fonts-ttf-2.1.5.tar.gz
+        sha256: '3b1dbe584da666fde96b9c28995ba3606384db7a4512a940e3275330beee5e92'
+    build-commands:
+      - mkdir -p /app/share/fonts/
+      - install -Dm644 *.ttf /app/share/fonts/
   - name: tibia-client
     buildsystem: simple
     sources:
@@ -33,6 +42,8 @@ modules:
         path: tibia.png
       - type: file
         path: index.theme
+      - type: file
+        path: fonts.conf
     build-commands:
       - mkdir -p /app/share/
       - tar -xzf tibia.x64.tar.gz -C /app/share/
@@ -42,3 +53,16 @@ modules:
       - install -Dm644 tibia.png /app/share/icons/hicolor/256x256/apps/com.tibia.client.png
       - install -Dm644 index.theme /app/share/icons/hicolor/index.theme
       - chmod +x /app/share/Tibia/Tibia
+      - mkdir -p /app/etc/fonts/conf.d/
+      - |
+        cat > /app/etc/fonts/fonts.conf << 'EOF'
+        <?xml version="1.0"?>
+        <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+        <fontconfig>
+          <dir>/usr/share/fonts</dir>
+          <dir>/app/share/fonts</dir>
+          <include ignore_missing="yes">/etc/fonts/conf.d</include>
+          <include>/app/etc/fonts/conf.d</include>
+        </fontconfig>
+        EOF
+      - install -Dm644 fonts.conf /app/etc/fonts/conf.d/10-tibia-verdana.conf
