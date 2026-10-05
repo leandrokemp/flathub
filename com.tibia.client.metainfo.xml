@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
     <id>com.tibia.client</id>
+    <url>https://www.tibia.com</url>
 
     <name>Tibia</name>
     <summary>Tibia MMRPG client (Unofficial flatpak)</summary>

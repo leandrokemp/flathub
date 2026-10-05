@@ -1,19 +1,19 @@
 app-id: com.tibia.client
 runtime: org.freedesktop.Platform
-runtime-version: '24.08'
+runtime-version: '26.08'
 sdk: org.freedesktop.Sdk
 sdk-extensions:
-  - org.freedesktop.Sdk.Extension.llvm18
+  - org.freedesktop.Sdk.Extension.llvm22
 
 command: tibia-wrapper
 
 finish-args:
-  - --socket=x11
+  - --share=ipc
+  - --socket=fallback-x11
   - --socket=wayland
   - --socket=pulseaudio
   - --share=network
   - --device=dri
-  - --filesystem=home
   - --env=PATH=/app/bin:/usr/bin
 
 modules:

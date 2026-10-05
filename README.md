@@ -15,11 +15,14 @@ This community-provided package is not verified by, affiliated with, or supporte
 ### Build
 
 ```bash
-# Initialize Flatpak runtime (first time only)
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 # Build the package
-flatpak-builder --user --install --force-clean build-dir flatpak/com.tibia.client.yml
+flatpak-builder --user --install --force-clean .build com.tibia.client.yml
 
 # Run
 flatpak run com.tibia.client
+
+### Update flatpak
+flatpak install flathub org.freedesktop.Platform//<sdk_version>
+flatpak install flathub org.freedesktop.Sdk//<sdk_version>
+flatpak install flathub org.freedesktop.Sdk.Extension.llvm<llvm_version>//<sdk_version>
