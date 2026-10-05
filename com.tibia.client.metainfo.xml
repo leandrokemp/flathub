@@ -3,7 +3,7 @@
     <id>com.tibia.client</id>
 
     <name>Tibia</name>
-    <summary>Free multiplayer online role-playing game</summary>
+    <summary>Tibia MMRPG client (Unofficial flatpak)</summary>
 
     <description>
         <p>
@@ -11,6 +11,9 @@
             Create your character and explore a vast, exciting world. Gain experience and treasures
             through combat, quests and other adventures. Interact with other players and engage in
             PvP combat, cooperation, and intense battles.
+        </p>
+        <p>
+            <i>This community-provided package is not verified by, affiliated with, or supported by CipSoft GmbH.</i>
         </p>
     </description>
 

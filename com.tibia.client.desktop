@@ -3,9 +3,9 @@ Type=Application
 Version=1.0
 
 Name=Tibia
-GenericName=MMORPG
+GenericName=Tibia MMORPG
 
-Comment=Enjoy Tibia, the legendary free multiplayer online role-playing game!
+Comment=Tibia MMRPG client (Unofficial flatpak)
 
 Icon=com.tibia.client
 Exec=tibia-wrapper
